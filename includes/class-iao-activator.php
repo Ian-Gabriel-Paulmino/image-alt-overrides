@@ -8,7 +8,7 @@ Class IAO_Activator {
         global $wpdb;
 
         /** @var string $table_name */
-        $table_name = "$wpdb->prefix image_alt_overrides";
+        $table_name = $wpdb->prefix . 'image_alt_overrides';
 
         /** @var string $charset_collate */
         $charset_collate = $wpdb->get_charset_collate();
