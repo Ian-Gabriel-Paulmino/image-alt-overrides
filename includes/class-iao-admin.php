@@ -9,7 +9,7 @@ class IAO_Admin {
 
     public function init(): void {
         add_action( 'add_meta_boxes', [$this, 'add_meta_box']);
-        // add_action( 'save_post', [$this, 'save_alt_overrides']);
+        add_action( 'save_post', [$this, 'save_alt_overrides']);
     }
 
     public function add_meta_box(): void {
@@ -50,6 +50,15 @@ class IAO_Admin {
             echo '<p>' . $image_tag . '<br>';
             echo '<p><strong>Image Id: ' . $image_id . '</strong></p>';
             echo '<input type="text" name="iao_alt[' . $image_id . ']" value="' . esc_attr( $value ) . '" class="widefat"></p>';
+        }
+    }
+
+
+    public function save_alt_overrides( $post_id ): void {
+        if ( isset($_POST['iao_alt']) && is_array($_POST['iao_alt']) ) {
+            foreach ( $_POST['iao_alt'] as $image_id => $alt_text ) {
+                $this->db->save_alt_text( intval($image_id), $post_id, sanitize_text_field($alt_text));
+            }
         }
     }
 

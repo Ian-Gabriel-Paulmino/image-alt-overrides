@@ -21,4 +21,37 @@ class IAO_DB {
 
         return $result ? $result : null;
     }
+
+    public function save_alt_text( $image_id, $post_id, $alt_text ): void {
+        /** @global wpdb $wpdb */
+        global $wpdb;
+
+        // Check if the entry exists
+        $existing = $this->get_alt_text($image_id, $post_id);
+
+        // If it exists, update entry
+        if( $existing ) {
+            $wpdb->update(
+                $this->table,
+                ['alt_text' => $alt_text],
+                ['image_id' => $image_id, 'post_id' => $post_id],
+                ['%s'], ['%d','%d']
+            );
+        } else {
+
+            // Add new entry if it doesn't exists
+            $wpdb->insert(
+                $this->table,
+                [
+                    'image_id' => $image_id,
+                    'post_id' => $post_id,
+                    'alt_text' => $alt_text
+                ],
+                ['%d', '%d', '%s']
+            );
+        }
+    }
+
+
+    
 }

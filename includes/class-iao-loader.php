@@ -19,6 +19,7 @@ class IAO_Loader {
     public function run(): void {
         // Init admin and frontend services
         $this->admin->init();
+        $this->admin->init();
     }
 
 
