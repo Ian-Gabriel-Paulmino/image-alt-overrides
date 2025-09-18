@@ -45,6 +45,9 @@ class IAO_Admin {
             $default_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
             // Set value to existing value alt if it exists in the db, default otherwise
             $value = $existing ? $existing : $default_alt;
+
+            $image_tag = wp_get_attachment_image($image_id, 'thumbnail');
+            echo '<p>' . $image_tag . '<br>';
             echo '<p><strong>Image Id: ' . $image_id . '</strong></p>';
             echo '<input type="text" name="iao_alt[' . $image_id . ']" value="' . esc_attr( $value ) . '" class="widefat"></p>';
         }
