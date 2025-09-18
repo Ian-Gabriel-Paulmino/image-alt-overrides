@@ -55,6 +55,7 @@ class IAO_Admin {
 
 
     public function save_alt_overrides( $post_id ): void {
+        // Saves overrides to the database
         if ( isset($_POST['iao_alt']) && is_array($_POST['iao_alt']) ) {
             foreach ( $_POST['iao_alt'] as $image_id => $alt_text ) {
                 $this->db->save_alt_text( intval($image_id), $post_id, sanitize_text_field($alt_text));

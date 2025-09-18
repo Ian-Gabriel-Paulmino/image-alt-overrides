@@ -4,7 +4,7 @@ Class IAO_Activator {
 
     public static function activate(): void {
         
-        /** @global mixed $wpdb */
+        /** @global wpdb $wpdb */
         global $wpdb;
 
         /** @var string $table_name */
