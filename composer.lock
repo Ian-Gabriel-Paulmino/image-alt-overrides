@@ -4,9 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b59403b702438984834f41d4674d8674",
+    "content-hash": "353416a9c95c801cbde48cf706d7ad57",
     "packages": [],
     "packages-dev": [
+        {
+            "name": "php-stubs/acf-pro-stubs",
+            "version": "v6.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-stubs/acf-pro-stubs.git",
+                "reference": "e54ba80a945fd1f6c9ebe761e3f19992fbaedb39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-stubs/acf-pro-stubs/zipball/e54ba80a945fd1f6c9ebe761e3f19992fbaedb39",
+                "reference": "e54ba80a945fd1f6c9ebe761e3f19992fbaedb39",
+                "shasum": ""
+            },
+            "require": {
+                "php-stubs/wordpress-stubs": "^4.7 || ^5.0 || ^6.0"
+            },
+            "require-dev": {
+                "php": "~7.1 || ^8.0",
+                "php-stubs/generator": "^0.8",
+                "phpdocumentor/reflection-docblock": "^5.3"
+            },
+            "suggest": {
+                "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
+                "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
+            },
+            "type": "library",
+            "extra": {
+                "installer-paths": {
+                    "source/{$name}/": [
+                        "type:wordpress-plugin"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Advanced Custom Fields PRO stubs for static analysis.",
+            "homepage": "https://github.com/php-stubs/acf-pro-stubs",
+            "keywords": [
+                "PHPStan",
+                "acf",
+                "static analysis",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/php-stubs/acf-pro-stubs/issues",
+                "source": "https://github.com/php-stubs/acf-pro-stubs/tree/v6.5.0"
+            },
+            "time": "2025-09-05T00:47:01+00:00"
+        },
         {
             "name": "php-stubs/wordpress-stubs",
             "version": "v6.8.2",
