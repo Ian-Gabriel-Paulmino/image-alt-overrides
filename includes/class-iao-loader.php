@@ -12,7 +12,7 @@ class IAO_Loader {
         
         $this->db = new IAO_DB();
         $this->admin = new IAO_Admin( $this->db );
-        $this->frontend = new IAO_Fronted( $this->db );
+        $this->frontend = new IAO_Frontend( $this->db );
 
     }
 
