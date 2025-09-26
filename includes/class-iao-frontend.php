@@ -34,6 +34,51 @@ class IAO_Frontend {
         
         // Additional hook for get_field() calls
         add_filter('acf/load_value', [$this, 'override_acf_load_value'], 15, 3);
+
+        add_action('template_redirect', [$this, 'start_output_buffer']);
+    }
+
+    public function start_output_buffer() {
+        ob_start([$this, 'replace_alts_in_html']);
+    }
+
+    public function replace_alts_in_html($html) {
+        $post_id = $this->get_context_post_id();
+        if (!$post_id) {
+            return $html;
+        }
+
+        return preg_replace_callback(
+            '/<img[^>]+src="([^"]+)"[^>]*>/i',
+            function ($matches) use ($post_id) {
+                $src = $matches[1];
+                $image_id = attachment_url_to_postid($src);
+
+                if ($image_id) {
+                    $custom_alt = $this->get_custom_alt($image_id, $post_id);
+
+                    if ($custom_alt) {
+                        if (stripos($matches[0], 'alt=') !== false) {
+                            return preg_replace(
+                                '/alt="[^"]*"/i',
+                                'alt="' . esc_attr($custom_alt) . '"',
+                                $matches[0]
+                            );
+                        } else {
+                            return preg_replace(
+                                '/<img/i',
+                                '<img alt="' . esc_attr($custom_alt) . '"',
+                                $matches[0],
+                                1
+                            );
+                        }
+                    }
+                }
+
+                return $matches[0];
+            },
+            $html
+        );
     }
 
     /**
